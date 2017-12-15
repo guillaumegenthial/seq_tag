@@ -79,7 +79,8 @@ class CoNLLDataset(object):
                         tag = self.processing_tag(tag)
                     words += [word]
                     tags += [tag]
-
+            if len(words)>0:
+                yield word,tag
 
     def __len__(self):
         """Iterates once over the corpus to set and store length"""
