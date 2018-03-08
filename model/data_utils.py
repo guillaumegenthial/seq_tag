@@ -1,5 +1,6 @@
 import numpy as np
 import os
+import codecs
 
 
 # shared global variables to be imported from model also
@@ -141,7 +142,8 @@ def get_glove_vocab(filename):
     """
     print("Building vocab...")
     vocab = set()
-    with open(filename) as f:
+    with codecs.open(filename, encoding='utf-8') as f:
+    #with open(filename) as f:
         for line in f:
             word = line.strip().split(' ')[0]
             vocab.add(word)
@@ -205,7 +207,8 @@ def export_trimmed_glove_vectors(vocab, glove_filename, trimmed_filename, dim):
 
     """
     embeddings = np.zeros([len(vocab), dim])
-    with open(glove_filename) as f:
+    #with open(glove_filename) as f:
+    with codecs.open(glove_filename, encoding="utf-8") as f:
         for line in f:
             line = line.strip().split(' ')
             word = line[0]
