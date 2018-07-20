@@ -56,8 +56,8 @@ class Config():
 
 
     # general config
-    dir_output = "results/test/"
-    dir_model  = dir_output + "model.weights/"
+    dir_output = "/lfs1/joel/experiments/sequence_tagging/model/"
+    dir_model  = dir_output + "model.weights"
     path_log   = dir_output + "log.txt"
 
     # embeddings
@@ -65,17 +65,21 @@ class Config():
     dim_char = 100
 
     # glove files
-    filename_glove = "data/glove.6B/glove.6B.{}d.txt".format(dim_word)
+    filename_glove = "/lfs1/shared/embeddings/glove.6B.{}d.txt".format(dim_word)
     # trimmed embeddings (created from glove_filename with build_data.py)
     filename_trimmed = "data/glove.6B.{}d.trimmed.npz".format(dim_word)
     use_pretrained = True
 
     # dataset
-    # filename_dev = "data/coNLL/eng/eng.testa.iob"
-    # filename_test = "data/coNLL/eng/eng.testb.iob"
-    # filename_train = "data/coNLL/eng/eng.train.iob"
+    filename_dev = "/lfs1/joel/experiments/bigmech/data/bc2gm/temp/bc2gm_dev_1.iobes"
+    filename_test = "/lfs1/joel/experiments/bigmech/data/bc2gm/temp/bc2gm_test_1.iobes"
+    filename_train = "/lfs1/joel/experiments/bigmech/data/bc2gm/temp/bc2gm_train_1.iobes"
 
-    filename_dev = filename_test = filename_train = "data/test.txt" # test
+    # filename_dev = "/lfs1/joel/experiments/bigmech/data/bc2gm/bc2gm_dev.iobes"
+    # filename_test = "/lfs1/joel/experiments/bigmech/data/bc2gm/bc2gm_test.iobes"
+    # filename_train = "/lfs1/joel/experiments/bigmech/data/bc2gm/bc2gm_train.iobes"
+
+    # filename_dev = filename_test = filename_train = "data/test.txt" # test
 
     max_iter = None # if not None, max number of examples in Dataset
 
@@ -85,10 +89,10 @@ class Config():
     filename_chars = "data/chars.txt"
 
     # training
-    train_embeddings = False
-    nepochs          = 15
+    train_embeddings = True
+    nepochs          = 3
     dropout          = 0.5
-    batch_size       = 20
+    batch_size       = 2
     lr_method        = "adam"
     lr               = 0.001
     lr_decay         = 0.9
@@ -100,5 +104,5 @@ class Config():
     hidden_size_lstm = 300 # lstm on word embeddings
 
     # NOTE: if both chars and crf, only 1.6x slower on GPU
-    use_crf = True # if crf, training is 1.7x slower on CPU
+    use_crf = False # if crf, training is 1.7x slower on CPU
     use_chars = True # if char embedding, training is 3.5x slower on CPU
