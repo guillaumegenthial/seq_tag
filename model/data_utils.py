@@ -80,7 +80,6 @@ class CoNLLDataset(object):
                     words += [word]
                     tags += [tag]
 
-
     def __len__(self):
         """Iterates once over the corpus to set and store length"""
         if self.length is None:
@@ -122,11 +121,11 @@ def get_char_vocab(dataset):
         a set of all the characters in the dataset
 
     """
-    vocab_char = set()
+    vocab_char = set(())
     for words, _ in dataset:
         for word in words:
-            vocab_char.update(word)
-
+            for letter in word.decode('utf-8'):
+                vocab_char.add(letter.encode('utf-8'))
     return vocab_char
 
 
@@ -252,7 +251,8 @@ def get_processing_word(vocab_words=None, vocab_chars=None,
         # 0. get chars of words
         if vocab_chars is not None and chars == True:
             char_ids = []
-            for char in word:
+            for char in word.decode("utf-8"):
+                char = char.encode("utf-8")
                 # ignore chars out of vocabulary
                 if char in vocab_chars:
                     char_ids += [vocab_chars[char]]
