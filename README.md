@@ -1,4 +1,4 @@
-# Named Entity Recognition with Tensorflow
+# Varsha Named Entity Recognition with Tensorflow
 
 This repo implements a NER model using Tensorflow (LSTM + CRF + chars embeddings).
 
